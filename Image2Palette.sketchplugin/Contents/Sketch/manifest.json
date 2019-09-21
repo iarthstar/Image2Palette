@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Get Palette",
+      "identifier": "img-pal-gen.get-palette",
+      "shortcut": "ctrl shift p",
+      "script": "__img-pal-gen.js"
+    },
+    {
+      "name": "Set Auth",
+      "identifier": "img-pal-gen.set-api-key",
+      "shortcut": "ctrl shift k",
+      "script": "__set-auth.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "Startup.finish": "setAuthStr"
+        }
+      }
+    }
+  ],
+  "menu": {
+    "title": "🏞️Img ➝ 🎨Pal",
+    "items": [
+      "img-pal-gen.get-palette",
+      "img-pal-gen.set-api-key"
+    ]
+  },
+  "version": "0.1.0",
+  "description": "Generates Color Palette from Image Layer",
+  "name": "img-pal-gen",
+  "identifier": "img-pal-gen",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
+  "author": "Arth K. Gajjar",
+  "authorEmail": "iarthstar@gmail.com"
+}

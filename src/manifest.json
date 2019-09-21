@@ -1,0 +1,31 @@
+{
+    "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+    "icon": "icon.png",
+    "commands": [
+        {
+            "name": "Get Palette",
+            "identifier": "img-pal-gen.get-palette",
+            "shortcut": "ctrl shift p",
+            "script": "./img-pal-gen.js"
+        },
+        {
+            "name": "Set Auth",
+            "identifier": "img-pal-gen.set-api-key",
+            "shortcut": "ctrl shift k",
+            "script": "./set-auth.js",
+            "handlers": {
+                "run" : "onRun",
+                "actions": {
+                    "Startup.finish": "setAuthStr"
+                }
+            }
+        }
+    ],
+    "menu": {
+        "title": "🏞️Img ➝ 🎨Pal",
+        "items": [
+            "img-pal-gen.get-palette",
+            "img-pal-gen.set-api-key"
+        ]
+    }
+}

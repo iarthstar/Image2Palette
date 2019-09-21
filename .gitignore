@@ -1,0 +1,24 @@
+# build artifacts
+img-pal-gen.sketchplugin
+
+# npm
+node_modules
+.npm
+npm-debug.log
+
+# mac
+.DS_Store
+
+# WebStorm
+.idea
+
+# sketch
+# sketch-assets
+/sketch-assets/
+
+# config
+.editorconfig
+
+# lock
+package-lock.json
+yarn.lock
