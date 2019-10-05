@@ -1,7 +1,7 @@
 {
     "name": "Image2Palette",
     "description": "Generates Color Palette from Image Layer",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "author": {
         "name": "Arth K. Gajjar",
         "email": "iarthstar@gmail.com",
