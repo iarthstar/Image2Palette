@@ -1,4 +1,9 @@
 {
+  "name": "Image2Palette",
+  "description": "Generates Color Palette from Image Layer",
+  "author": "Arth K. Gajjar",
+  "homepage": "https://github.com/iarthstar/Image2Palette",
+  "identifier": "com.iarthstar.img-pal-gen",
   "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
   "icon": "icon.png",
   "commands": [
@@ -28,12 +33,6 @@
       "img-pal-gen.set-api-key"
     ]
   },
-  "version": "0.1.0",
-  "description": "Generates Color Palette from Image Layer",
-  "name": "img-pal-gen",
-  "identifier": "img-pal-gen",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
-  "author": "Arth K. Gajjar",
-  "authorEmail": "iarthstar@gmail.com"
+  "appcast": "https://raw.githubusercontent.com/iarthstar/Image2Palette/master/.appcast.xml"
 }
