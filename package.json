@@ -25,7 +25,7 @@
         "sketch": ">=49.0"
     },
     "skpm": {
-        "name": "img-pal-gen",
+        "name": "Image 2 Palette",
         "manifest": "src/manifest.json",
         "main": "Image2Palette.sketchplugin",
         "assets": [
