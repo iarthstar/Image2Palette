@@ -1,31 +1,13 @@
 {
-    "name": "Image2Palette",
-    "description": "Generates Color Palette from Image Layer",
-    "version": "0.2.4",
-    "author": {
-        "name": "Arth K. Gajjar",
-        "email": "iarthstar@gmail.com",
-        "url": "https://github.com/iarthstar"
-    },
-    "keywords": [
-        "sketch",
-        "plugin",
-        "javascript",
-        "node",
-        "image",
-        "palette"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/iarthstar/Image2Palette.git"
-    },
+    "name": "image2palette",
+    "description": "Sketch Plugin to Generates Color Palette from Image Layer",
+    "version": "0.3.0",
     "license": "MIT",
-    "private": false,
     "engines": {
         "sketch": ">=49.0"
     },
     "skpm": {
-        "name": "Image 2 Palette",
+        "name": "Image2Palette",
         "manifest": "src/manifest.json",
         "main": "Image2Palette.sketchplugin",
         "assets": [
@@ -34,12 +16,29 @@
         "sketch-assets-file": "sketch-assets/icons.sketch"
     },
     "scripts": {
-        "build": "skpm-build",
-        "watch": "skpm-build --watch",
-        "start": "skpm-build --watch --run",
-        "postinstall": "npm run build && skpm-link"
+        "clean": "rm -rf bower_components node_modules output sketch-assets .pulp-cache Image2Palette.sketchplugin .purs-repl package-lock.json yarn.lock",
+        "preinstall": "$npm_execpath --silent run checkyarn",
+        "checkyarn": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)",
+        "postinstall": "yarn setup && yarn build && skpm-link",
+        "build-purs": "pulp --then \"echo 'module.exports = PS;' >> ./output/bundle.js;\" build --skip-entry-point --to ./output/bundle.js",
+        "watch-purs": "pulp --watch --then \"echo 'module.exports = PS;' >> ./output/bundle.js;\" build --skip-entry-point --to ./output/bundle.js",
+        "build": "pulp --then \"echo 'module.exports = PS;' >> ./output/bundle.js; yarn build-skpm;\" build --skip-entry-point --to ./output/bundle.js",
+        "watch": "pulp --watch --then \"echo 'module.exports = PS;' >> ./output/bundle.js; yarn watch-skpm;\" build --skip-entry-point --to ./output/bundle.js",
+        "build-skpm": "skpm-build",
+        "watch-skpm": "skpm-build --watch",
+        "start-skpm": "skpm-build --watch --run",
+        "start": "pulp --watch --then \"echo 'module.exports = PS;' >> ./output/bundle.js; yarn start-skpm;\" build --skip-entry-point --to ./output/bundle.js",
+        "setup": "yarn global add purescript pulp bower skpm && bower i"
     },
     "devDependencies": {
-        "@skpm/builder": "^0.7.0"
+        "@skpm/builder": "latest",
+        "bower": "latest",
+        "pulp": "latest",
+        "purescript": "latest"
+    },
+    "author": "Arth K. Gajjar <iarthstar@gmail.com>",
+    "dependencies": {
+        "purty": "^4.5.1",
+        "regenerator-runtime": "^0.13.3"
     }
 }
