@@ -1,7 +1,7 @@
 {
     "name": "Image2Palette",
     "description": "Sketch Plugin to Generates Color Palette from Image Layer",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "engines": {
         "sketch": ">=49.0"
     },
