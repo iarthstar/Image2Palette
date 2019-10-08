@@ -2,7 +2,6 @@
     "name": "Image2Palette",
     "description": "Sketch Plugin to Generates Color Palette from Image Layer",
     "version": "0.3.0",
-    "license": "MIT",
     "engines": {
         "sketch": ">=49.0"
     },
@@ -14,6 +13,28 @@
             "assets/**/*"
         ]
     },
+    "author": {
+        "name": "Arth K. Gajjar",
+        "email": "iarthstar@gmail.com",
+        "url": "https://github.com/iarthstar"
+    },
+    "keywords": [
+        "sketch",
+        "plugin",
+        "purescript",
+        "javascript",
+        "functional",
+        "node",
+        "Image",
+        "Palette",
+        "Imagga"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iarthstar/Image2Palette.git"
+    },
+    "license": "MIT",
+    "private": false,
     "scripts": {
         "clean": "rm -rf bower_components node_modules output sketch-assets .pulp-cache Image2Palette.sketchplugin .purs-repl package-lock.json yarn.lock",
         "preinstall": "$npm_execpath --silent run checkyarn",
@@ -35,7 +56,6 @@
         "pulp": "latest",
         "purescript": "latest"
     },
-    "author": "Arth K. Gajjar <iarthstar@gmail.com>",
     "dependencies": {
         "purty": "^4.5.1",
         "regenerator-runtime": "^0.13.3"
