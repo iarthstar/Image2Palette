@@ -1,5 +1,5 @@
 {
-    "name": "image2palette",
+    "name": "Image2Palette",
     "description": "Sketch Plugin to Generates Color Palette from Image Layer",
     "version": "0.3.0",
     "license": "MIT",
@@ -12,8 +12,7 @@
         "main": "Image2Palette.sketchplugin",
         "assets": [
             "assets/**/*"
-        ],
-        "sketch-assets-file": "sketch-assets/icons.sketch"
+        ]
     },
     "scripts": {
         "clean": "rm -rf bower_components node_modules output sketch-assets .pulp-cache Image2Palette.sketchplugin .purs-repl package-lock.json yarn.lock",
