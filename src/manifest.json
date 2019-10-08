@@ -1,10 +1,11 @@
 {
     "name": "Image2Palette",
     "description": "Generates Color Palette from Image Layer",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "author": "Arth K. Gajjar",
     "homepage": "https://github.com/iarthstar/Image2Palette",
     "identifier": "com.iarthstar.img-pal-gen",
+    "compatibleVersion": "56",
     "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
     "icon": "icon.png",
     "commands": [
@@ -12,26 +13,22 @@
             "name": "Get Palette",
             "identifier": "img-pal-gen.get-palette",
             "shortcut": "ctrl shift p",
-            "script": "./img-pal-gen.js"
+            "script": "./Commands.js",
+            "handler": "imagePaletteGenerate"
         },
         {
-            "name": "Set Auth",
-            "identifier": "img-pal-gen.set-api-key",
+            "name": "Set Auth String",
+            "identifier": "img-pal-gen.set-auth-str",
             "shortcut": "ctrl shift k",
-            "script": "./set-auth.js",
-            "handlers": {
-                "run": "onRun",
-                "actions": {
-                    "Startup.finish": "setAuthStr"
-                }
-            }
+            "script": "./Commands.js",
+            "handler": "setAuthString"
         }
     ],
     "menu": {
         "title": "🏞️Img ➝ 🎨Pal",
         "items": [
             "img-pal-gen.get-palette",
-            "img-pal-gen.set-api-key"
+            "img-pal-gen.set-auth-str"
         ]
     }
 }

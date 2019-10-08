@@ -1,0 +1,20 @@
+{
+    "name": "purs-skpm",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-prelude": "latest",
+        "purescript-console": "latest",
+        "purescript-effect": "latest",
+        "purescript-sketch": "latest",
+        "purescript-lens": "latest",
+        "purescript-foreign-generic": "latest"
+    },
+    "devDependencies": {
+        "purescript-psci-support": "latest"
+    }
+}
