@@ -1,5 +1,15 @@
 # build artifacts
-img-pal-gen.sketchplugin
+/*.sketchplugin/
+
+# purs
+bower_components
+.pulp-cache
+output
+generated-docs
+.psc-package
+.psc*
+.purs*
+.psa*
 
 # npm
 node_modules
@@ -15,9 +25,6 @@ npm-debug.log
 # sketch
 # sketch-assets
 /sketch-assets/
-
-# config
-.editorconfig
 
 # lock
 package-lock.json
