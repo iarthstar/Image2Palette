@@ -2,7 +2,7 @@
 
 A Sketch Plugin to Generate Color Palette from Image Layer.
 
-![Image2Palette GIF](https://i.imgur.com/A4PdUvV.gifv)
+![Image2Palette GIF](https://i.imgur.com/A4PdUvV.gif)
 
 ## User Guide
 
