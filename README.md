@@ -1,4 +1,4 @@
-# Image2Palette
+# Image2Palette &nbsp; ![Downloads](https://img.shields.io/github/downloads/iarthstar/image2palette/total?style=social)
 
 A Sketch Plugin to Generate Color Palette from Image Layer.
 
