@@ -66,5 +66,30 @@ derive instance genericStatus :: Generic Status _
 instance decodeStatus :: Decode Status where decode = genericDecode (defaultOptions { unwrapSingleConstructors = true })
 instance showStatus :: Show Status where show = genericShow
 
--- | Fetch instance for CreateUser API
-instance fetchCreateUserReq :: Fetch ColorsReq ColorsRes where fetch = genericFetch
+-- | Fetch instance for Colors API
+instance fetchColorsReq :: Fetch ColorsReq ColorsRes where fetch = genericFetch
+
+
+
+
+newtype UsageReq = UsageReq {}
+derive instance genericUsageReq :: Generic UsageReq _
+instance encodeUsageReq :: Encode UsageReq where encode = genericEncode (defaultOptions { unwrapSingleConstructors = true })
+
+newtype UsageRes = UsageRes 
+  { result :: 
+      { billing_period_end :: String
+      , billing_period_start :: String
+      , monthly_limit :: Int
+      , monthly_processed :: Int
+      , monthly_requests :: Int
+      }
+  , status :: Status
+  }
+derive instance newtypeUsageRes :: Newtype UsageRes _
+derive instance genericUsageRes :: Generic UsageRes _
+instance decodeUsageRes :: Decode UsageRes where decode = genericDecode (defaultOptions { unwrapSingleConstructors = true })
+instance showUsageRes :: Show UsageRes where show = genericShow
+
+-- | Fetch instance for Usage API
+instance fetchUsageReq :: Fetch UsageReq UsageRes where fetch = genericFetch

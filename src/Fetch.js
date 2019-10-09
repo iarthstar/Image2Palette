@@ -26,6 +26,7 @@ function doSomethingAsync(config, cb) {
     if(config.method == "GET" || config.method == "DELETE"){
         config.params = config.data;
         delete config.data;
+        delete config.body;
     } else if (config.method == "POST") {
         delete config.data;
     }

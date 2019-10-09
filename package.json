@@ -36,9 +36,10 @@
     "license": "MIT",
     "private": false,
     "scripts": {
+        "link-skpm":"yarn build && skpm-link",
         "clean": "rm -rf bower_components node_modules output sketch-assets .pulp-cache Image2Palette.sketchplugin .purs-repl package-lock.json yarn.lock",
-        "preinstall": "$npm_execpath --silent run checkyarn",
         "checkyarn": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)",
+        "preinstall": "$npm_execpath --silent run checkyarn",
         "postinstall": "yarn setup && yarn build && skpm-link",
         "build-purs": "pulp --then \"echo 'module.exports = PS;' >> ./output/bundle.js;\" build --skip-entry-point --to ./output/bundle.js",
         "watch-purs": "pulp --watch --then \"echo 'module.exports = PS;' >> ./output/bundle.js;\" build --skip-entry-point --to ./output/bundle.js",

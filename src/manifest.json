@@ -1,7 +1,7 @@
 {
     "name": "Image2Palette",
     "description": "Generates Color Palette from Image Layer",
-    "version": "0.3.0",
+    "version": "0.3.2",
     "author": "Arth K. Gajjar",
     "homepage": "https://github.com/iarthstar/Image2Palette",
     "identifier": "com.iarthstar.img-pal-gen",

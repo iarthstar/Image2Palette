@@ -1,18 +1,20 @@
 module Main where
 
-import Prelude (Unit, discard, map, pure, unit, ($), (*), (+), (-), (/), (>>=))
+import Prelude -- (Unit, discard, map, pure, unit, ($), (*), (+), (-), (/), (>>=))
 
 import Accessors (_colors, _frame, _height, _html_code, _id, _image_colors, _result, _width, _x, _y)
+import Control.Parallel
 import Data.Array (length, (!!))
 import Data.Either (Either(..))
 import Data.FunctorWithIndex (mapWithIndex)
 import Data.Int (toNumber)
 import Data.Maybe (Maybe(..))
 import Data.String (toUpper)
+import Data.Tuple
 import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
-import Effect.Class.Console (logShow)
+import Effect.Class.Console -- (logShow)
 import Fetch (Config(..), Header(..), Method(..), fetch)
 import Foreign (Foreign)
 import Foreign.Class (encode)
@@ -21,7 +23,7 @@ import Sketch.Dom as Dom
 import Sketch.Settings as Settings
 import Sketch.Types (Fill(..), Frame(..), GroupLayer(..), GroupStyle(..), ImageLayer, InputType(..), Layer(..), ShapeLayer(..), ShapeStyle(..))
 import Sketch.UI as UI
-import Types (ColorsReq(..), ColorsRes) 
+import Types -- (ColorsReq(..), ColorsRes) 
 
 foreign import getBase64StrFromLayerID :: String -> String
 foreign import newLayer :: String -> Foreign -> Effect Unit
@@ -43,28 +45,45 @@ imagePaletteGenerate = do
     generatePaletteFromLayer :: String -> ImageLayer -> Effect Unit
     generatePaletteFromLayer auth_val il = do
           let base64Str = getBase64StrFromLayerID $ il ^. _id
-          let configPost = Config
+          let headers = 
+                [ Header "Cache-Control" "no-cache"
+                , Header "cache-control" "no-cache"
+                , Header "Content-Type" "application/json"
+                , Header "Authorization" auth_val
+                ]
+
+          let configColors = Config
                 { url: "https://api.imagga.com/v2/colors"
                 , method: POST
                 , data: ColorsReq { image_base64: base64Str, deterministic: "1" }
-                , headers:
-                    [ Header "Cache-Control" "no-cache"
-                    , Header "cache-control" "no-cache"
-                    , Header "Content-Type" "application/json"
-                    , Header "Authorization" auth_val
-                    ]
+                , headers
                 , formData: true
                 }
-          launchAff_ $ fetch configPost >>= case _ of
-              Left err -> logShow err
-              Right (dat :: ColorsRes) -> do
-                let image = map (\b -> b ^. _html_code) (dat ^. _result ^. _colors ^. _image_colors)
-                let width = (il ^. _frame ^. _width) / (toNumber $ length image)
-                let colors = mapWithIndex (makeShapeWithColor width) image
-                let group = makeGroupWithChildren (il ^. _frame ^. _x) (il ^. _frame ^. _y + il ^. _frame ^. _height - 50.0) colors
-                liftEffect do 
-                  newLayer (il ^. _id) $ encode group
-                  UI.message "🎨 Palette generated..."
+          let configUsage = Config
+                { url: "https://api.imagga.com/v2/usage"
+                , method: GET
+                , data: UsageReq {}
+                , headers
+                , formData: false
+                }
+          launchAff_ do
+              result <- sequential $
+                Tuple <$> parallel (fetch configColors)
+                      <*> parallel (fetch configUsage)
+              case result of
+                Tuple (Right (ColorsRes colorsRes)) (Right (UsageRes usageRes)) -> do
+                    let colors = map (\c -> c ^. _html_code) (colorsRes.result ^. _colors ^. _image_colors)
+                    let width = (il ^. _frame ^. _width) / (toNumber $ length colors)
+                    let colorShapes = mapWithIndex (makeShapeWithColor width) colors
+                    let paletteGroup = makeGroupWithChildren (il ^. _frame ^. _x) (il ^. _frame ^. _y + il ^. _frame ^. _height - 50.0) colorShapes
+
+                    let total = usageRes.result.monthly_limit
+                    let used = usageRes.result.monthly_processed
+
+                    liftEffect do 
+                      newLayer (il ^. _id) $ encode paletteGroup
+                      UI.message $ "🎨 Palette generated, Generations remaining : " <> (show (total - used))
+                _ -> liftEffect $ UI.message "Something went wrong"
     
     makeGroupWithChildren :: Number -> Number -> Array Layer -> Layer
     makeGroupWithChildren x y children = Group $ GroupLayer

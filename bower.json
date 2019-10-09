@@ -12,7 +12,9 @@
         "purescript-effect": "latest",
         "purescript-sketch": "latest",
         "purescript-lens": "latest",
-        "purescript-foreign-generic": "latest"
+        "purescript-foreign-generic": "latest",
+        "purescript-tuples": "latest",
+        "purescript-parallel": "latest"
     },
     "devDependencies": {
         "purescript-psci-support": "latest"
