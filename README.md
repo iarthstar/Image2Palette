@@ -19,7 +19,7 @@ A Sketch Plugin to Generate Color Palette from Image Layer.
 
 ## Install
 
-Click [Here](https://github.com/iarthstar/Image2Palette/releases/download/v0.3.1/Image2Palette.sketchplugin.zip) to download the plugin
+Click [Here](https://github.com/iarthstar/Image2Palette/releases/download/v0.3.2/Image2Palette.sketchplugin.zip) to download the plugin
 
 [![Sketchpacks](https://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png "Install Image2Palette using SKETCHPACKS")](https://sketchpacks.com/iarthstar/Image2Palette/install)
 
