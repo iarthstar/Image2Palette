@@ -6,7 +6,7 @@ A Sketch Plugin to Generate Color Palette from Image Layer.
 
 ## Support 
 
-![Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=170502&theme=dark)
+[![Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=170502&theme=dark)](https://www.producthunt.com/posts/image2palette)
 
 ## User Guide
 
